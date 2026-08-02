@@ -134,6 +134,62 @@ ${code}
     }
 });
 
+app.post('/api/insights', async (req, res) => {
+    const { codeA, codeB, results } = req.body;
+    const apiKey = process.env.VITE_HF_API_KEY;
+    
+    if (!apiKey) {
+        return res.status(500).json({ error: "VITE_HF_API_KEY is not configured on the server." });
+    }
+
+    const systemPrompt = "You are an expert computer scientist and competitive programming coach. Analyze the two provided code solutions and their actual execution times. Explain why one solution outperformed the other based on time complexity (Big O) and algorithmic approach. Structure your response strictly in Markdown using three headers: '### The Winner', '### Why it Won', and '### Approach Difference'. Keep it highly technical and concise.";
+  
+    const userPrompt = `
+Solution A:
+\`\`\`
+${codeA}
+\`\`\`
+
+Solution B:
+\`\`\`
+${codeB}
+\`\`\`
+
+Execution Results Summary:
+${JSON.stringify(results, null, 2)}
+    `;
+
+    try {
+        const response = await fetch("https://router.huggingface.co/v1/chat/completions", {
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+                model: "meta-llama/Llama-3.1-8B-Instruct:novita",
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: userPrompt }
+                ],
+                max_tokens: 500,
+                temperature: 0.1
+            }),
+        });
+
+        const result = await response.json();
+
+        if (result.error) {
+            return res.status(500).json({ error: result.error.message || result.error });
+        }
+
+        res.json({ insights: result.choices[0].message.content });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch from Hugging Face." });
+    }
+});
+
 // Fallback for React Router (if added in the future) / SPA
 app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
