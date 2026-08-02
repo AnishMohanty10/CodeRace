@@ -51,7 +51,7 @@ const handleLangChange = (e) => {
 const handleCompare = async () => {
   setResults([]); 
   setAiExplanation('');
-  const testSizes = [10, 100, 1000, 10000, 100000, 1000000, 10000000]; 
+  const testSizes = [10, 100, 1000, 10000, 100000, 1000000]; 
 
   const finalResults = [];
   for (let n of testSizes) {
