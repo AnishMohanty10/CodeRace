@@ -2,6 +2,8 @@
 
 CodeRace is a high-performance, multi-language developer tool for benchmarking algorithmic time complexity. Built with a premium IDE-grade interface, it allows developers to write two solutions to a problem, benchmark them across exponentially growing input sizes, and receive an AI-powered analysis of their performance.
 
+Live: https://coderace-w49o.onrender.com/
+
 ![CodeRace Interface](./public/preview.png)
 
 ## ✨ Features
