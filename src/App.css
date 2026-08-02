@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: #0D1117; /* Very dark, slightly cool */
+  color: #c9d1d9;
+}
+
+#main-app {
+  display: flex;
+  flex-direction: column; 
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #0D1117;
+  border-bottom: 1px solid #21262d;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #c9d1d9;
+  margin: 0;
+}
+.logo-highlight {
+  color: #58a6ff;
+}
+
+.run-btn {
+  padding: 6px 12px;
+  background-color: #238636;
+  color: #ffffff;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.run-btn:hover {
+  background-color: #2ea043;
+}
+
+/* Layout */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 16px;
+  gap: 16px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #161B22; /* Slightly lighter than #0D1117 */
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #161B22;
+  border-bottom: 1px solid #21262d;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e6edf3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Editor Section */
+.editor-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #1E1E1E; /* Standard VS Code Editor BG */
+}
+
+.border-top {
+  border-top: 1px solid #21262d;
+}
+
+.editor-header {
+  padding: 4px 16px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #8b949e;
+  background-color: #161B22;
+  border-bottom: 1px solid #21262d;
+}
+
+.editor-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+#language-list {
+  padding: 4px 8px;
+  background-color: #0D1117;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+#language-list:hover {
+  border-color: #8b949e;
+}
+
+/* Results Section */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.visualizer-zone {
+  flex: 4 1 0%;
+  min-height: 200px;
+  position: relative;
+  background-color: #0D1117;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-zone {
+  flex: 3 1 0%;
+  background-color: #161B22;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #21262d;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #8b949e;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.empty-state-icon {
+  opacity: 0.5;
+}
+
+/* Table Styles */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: #161B22;
+  padding: 8px 16px;
+  text-align: left;
+  color: #8b949e;
+  font-weight: 500;
+  border-bottom: 1px solid #21262d;
+  font-family: 'Inter', sans-serif;
+  z-index: 1;
+}
+
+td {
+  padding: 8px 16px;
+  border-bottom: 1px solid #21262d;
+  color: #e6edf3;
+}
+
+tr:hover td {
+  background-color: rgba(139, 148, 158, 0.1);
+}
+
+.tle-text {
+  color: #f85149;
+}
+
+.time-good {
+  color: #3fb950;
+}
+.time-warning {
+  color: #d29922;
+}
+
+/* AI Insights Panel */
+.ai-insights-zone {
+  flex: 3 1 0%;
+  border-bottom: 1px solid #21262d;
+  background-color: #11151a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-header {
+  padding: 8px 16px;
+  background-color: #161B22;
+  border-bottom: 1px solid #21262d;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a371f7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ai-content {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Skeleton Loader */
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-line {
+  height: 12px;
+  background: linear-gradient(90deg, #21262d 25%, #30363d 50%, #21262d 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Markdown Body styling */
+.markdown-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c9d1d9;
+}
+
+.markdown-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #21262d;
+}
+
+.markdown-body h3:first-child {
+  margin-top: 0;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body code {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: rgba(110, 118, 129, 0.4);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.markdown-body ul {
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-left: 20px;
+}
+
+.markdown-body li {
+  margin-bottom: 4px;
+}
